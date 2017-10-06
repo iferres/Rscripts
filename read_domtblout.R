@@ -9,21 +9,34 @@ if (length(args)==0){
 	rl <- gsub("[ ]+"," ",rl)
 	lst <- strsplit(rl," ")
 	query<-sapply(lst,function(x){x[1]})
+	tlen <- sapply(lst,function(x){x[3]})
 	hit<-sapply(lst,function(x){x[4]})
 	pfmID<-sapply(lst,function(x){x[5]})
+	qlen <- sapply(lst,function(x){x[6]})
 	eval<-as.numeric(sapply(lst,function(x){x[13]}))
 	score<-as.numeric(sapply(lst,function(x){x[14]}))
-	st<-as.numeric(sapply(lst, function(x){x[18]}))
-	en<-as.numeric(sapply(lst,function(x){x[19]}))
+	sst<-as.numeric(sapply(lst, function(x){x[15]}))
+	sen<-as.numeric(sapply(lst, function(x){x[16]}))
+	dst<-as.numeric(sapply(lst, function(x){x[17]}))
+	den<-as.numeric(sapply(lst,function(x){x[18]}))
+	hmmst<-as.numeric(sapply(lst, function(x){x[19]}))
+	hmmen<-as.numeric(sapply(lst, function(x){x[20]}))
 	desc<-sapply(lst,function(x){paste(x[23:length(x)],collapse = " ")})
 
-	hmmer.table<-data.frame(Query=query,
+	hmmer.table<-data.frame(
+	      Query=query,
+	      Tlen = tlen,
 				Hit=hit,
 				PfamID=pfmID,
+				Qlen = qlen,
 				Evalue=eval,
 				Score=score,
-				Start=st,
-				End=en,
+				SStart=sst,
+				SEnd=sen,
+				DStart=dst,
+				DEnd=den,
+				HmmStart=hmmst,
+				HmmEnd=hmmen,
 				Description=desc,
 				stringsAsFactors = F)
 
