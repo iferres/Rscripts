@@ -4,11 +4,8 @@ Something like..
 
 ```bash
 git clone https://github.com/iferres/Rscripts
-
 cd Rscripts/
-
 chmod 755 *.R
-
 sudo cp *.R /usr/local/bin/
 ```
 
