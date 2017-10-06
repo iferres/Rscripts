@@ -15,12 +15,12 @@ if (length(args)==0){
 	qlen <- sapply(lst,function(x){x[6]})
 	eval<-as.numeric(sapply(lst,function(x){x[13]}))
 	score<-as.numeric(sapply(lst,function(x){x[14]}))
-	sst<-as.numeric(sapply(lst, function(x){x[15]}))
-	sen<-as.numeric(sapply(lst, function(x){x[16]}))
-	dst<-as.numeric(sapply(lst, function(x){x[17]}))
-	den<-as.numeric(sapply(lst,function(x){x[18]}))
-	hmmst<-as.numeric(sapply(lst, function(x){x[19]}))
-	hmmen<-as.numeric(sapply(lst, function(x){x[20]}))
+	sst<-as.numeric(sapply(lst, function(x){x[16]}))
+	sen<-as.numeric(sapply(lst, function(x){x[17]}))
+	dst<-as.numeric(sapply(lst, function(x){x[18]}))
+	den<-as.numeric(sapply(lst,function(x){x[19]}))
+	hmmst<-as.numeric(sapply(lst, function(x){x[20]}))
+	hmmen<-as.numeric(sapply(lst, function(x){x[21]}))
 	desc<-sapply(lst,function(x){paste(x[23:length(x)],collapse = " ")})
 
 	hmmer.table<-data.frame(
