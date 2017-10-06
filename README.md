@@ -1,9 +1,15 @@
 # R-scripts for some easy analyses
 Once you clone this repository, is recommended to change the permissions to make them excecutable, and if you want you can add them to the $PATH of your system.
-Something like.. 
-chmod 755 *.R
-sudo cp *.R /usr/local/bin/
+Something like..
+`
+git clone https://github.com/iferres/Rscripts
 
+cd Rscripts/
+
+chmod 755 *.R
+
+sudo cp *.R /usr/local/bin/
+`
 
 ## parseBlastResult.R
 This script takes a blast output file, a qcov and a pid thresholds, and returns in stout the hits which pass the filters.
