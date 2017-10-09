@@ -4,7 +4,7 @@ args = commandArgs(trailingOnly=TRUE)
 
 if (length(args)==0){
   
-  cat("Convert the roary's gene_presence_absence.csv file to an abundance matrix\n")
+  cat("Convert the roary's gene_presence_absence.csv file to an abundance pan-matrix\n")
   
   cat('\tUsage: roary_gpa2abu.R <gene_presence_absence.csv> <outname.tsv>\n')
   
