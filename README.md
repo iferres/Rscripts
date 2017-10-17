@@ -24,3 +24,6 @@ Read a hmmsearch domtblout output, and return to the second argument (a file) a 
 ### roary_gpa2abu.R
 Read a gene_presence_absence.csv file as produced by Roary, and output an abundance pan-matrix.
 
+
+### annot_prokka.R
+Takes an integer as the number of cpus to use, and a list of fasta files, and annotates them using PROKKA. The only fancy thing this script does is to automatically generate the `--outdir`, `--prefix` and `--locustag` parameters to pass to PROKKA, using the file name. 
