@@ -2,7 +2,13 @@
 
 args = commandArgs(trailingOnly=TRUE)
 
-if (length(args)==0){
+if (Sys.which('prokka')==""){
+  
+  stop('prokka is not in your $PATH.')
+  
+}
+
+printUsage <- function(){
   
   cat("Annotate a bunch of fna files with prokka (wrapper).\n")
   
@@ -10,28 +16,53 @@ if (length(args)==0){
   
   cat('\tUsage: annot_prokka.R <cpus [int]> <fasta files [str]>\n\n')
   
-  cat('Example: annot_prokka.R PROKKA 4 ./*.fna')
+  cat('Example: annot_prokka.R 4 ./*.fna\n')
+  
+  
+}
+
+if (length(args)==0){
+  
+  printUsage()
   
 }else{
   
+  
   cpus <- args[1]
-  if( is.na(as.integer(cpus)) ){ stop('Second argument is not an integer.') }
   
-  files <- args[2:length(args)]
-  if ( all(is.na(files)) ){ stop('No fasta files provided.') }
+  if( suppressWarnings(is.na(as.integer(cpus))) ){ 
+    
+    printUsage()
+    
+    stop('Error: First argument (cpus) is not an integer.\n')
+    
+  }
   
   
-  pb <- txtProgressBar(min = 0, max = 100)
+  files <- args[-1]
+  
+  if (length(files)==0 | !all(file.exists(files))){ 
+    
+    printUsage()
+    
+    stop('Error: Provide fasta files.\n')
+  
+  }
+  
+  
+  pb <- txtProgressBar(min = 0, max = length(files))
   for (i in seq_along(files)){
 
     outdir <- sub('[.]\\w+$', '', files[i])
     
-    prefix <- rev(strsplit(normalizePath(file[i]), '/')[[1]])[1]
+    prefix <- rev(strsplit(normalizePath(files[i]), '/')[[1]])[1]
+    
+    prefix <- sub('[.]\\w+$', '', prefix)
     
     run <- paste0('prokka --quiet --outdir ',outdir, 
                   ' --prefix ',prefix,
                   ' --locustag ', prefix,
-                  ' --cpus ',cpus,
+                  ' --cpus ',cpus,' ',
                   files[i])
     
     system(run)
