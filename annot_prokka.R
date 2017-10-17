@@ -50,7 +50,7 @@ if (length(args)==0){
   }
   
   
-  pb <- txtProgressBar(min = 0, max = length(files))
+  pb <- txtProgressBar(min = 0, max = length(files), style = 3)
   for (i in seq_along(files)){
 
     outdir <- sub('[.]\\w+$', '', files[i])
